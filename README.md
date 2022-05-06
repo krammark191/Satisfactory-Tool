@@ -16,17 +16,19 @@ This project was created for two reasons: to learn the Kotlin language and to cr
 
 Tools Used:
 
+* IntelliJ IDEA
+* GitHub
+* Android Studio
+
 I initially chose Android Studio for this project, as I plan on using the code I've created to build an android app, but I realized that I needed a more focused editor, so I settled on IntelliJ IDEA, as it specializes in Kotlin and is much more focused.
 
 Languages and Libraries:
 
 * Kotlin
-
 * Java.util.scanner (for integer inputs)
 
 # Useful Websites
 
-{Make a list of websites that you found helpful in this project}
 * [Kotlin Language](https://kotlinlang.org/)
 * [W3 Schools](https://www.w3schools.com/)
 
