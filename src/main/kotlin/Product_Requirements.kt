@@ -3,29 +3,41 @@ import java.util.Scanner
 class ProductRequirements {
     fun chooseProduct() { // This function is like main, meaning it calls most other functions.
         println("Welcome to the Satisfactory Directory!")
+        // Choose a category of items from which an item can be chosen (line 9)
         val prodCat = chooseProductCategory()
         // Item code will be in #0# format, i.e. 402, meaning category 4, item 2.
         val itemCode = "${prodCat}0${displayProducts(prodCat)}"
+        // Displays the information about the item selected.
         getInfo(itemCode)
     }
 
     private fun getInfo(itemCode: String) {
+        // Creates an object from the ItemInfo class.
         val itemInfo = ItemInfo()
+        // Calls the getInfo function in the ItemInfo class and passes an item code to it.
         itemInfo.getInfo(itemCode)
     }
 
     private fun displayProducts(prodCat: Int): Int { // Searches the Items class and displays the right category.
         println("\nPlease choose an item:")
+        // Creates an object from the Items class.
         val itemList = Items()
+
+        // For user input error-checking.
         var sum = 0
+
+        // Loops through the categories map to find the right category.
         for ((key, value) in itemList.categories) {
             if (key == prodCat) {
+                // Once the right category is found the items in that category are displayed.
                 for ((K, V) in value) {
                     println("$K = $V")
                     sum++
                 }
             }
         }
+
+        // Gets user input for which item they choose.
         print("> ")
         val reader = Scanner(System.`in`)
         var integerIn: Int = reader.nextInt()
@@ -37,11 +49,11 @@ class ProductRequirements {
         return integerIn
     }
 
-    private fun chooseQuantity() { // Goal in items per minute.
-        return
-    }
+//    private fun chooseQuantity() { // Goal in items per minute.
+//        return
+//    }
 
-    private fun chooseProductCategory(): Int {
+    private fun chooseProductCategory(): Int { // For choosing an item category.
         println(
             "Please choose an item category:\n" +
                     "1  - Ores\n" +
@@ -59,6 +71,8 @@ class ProductRequirements {
                     "13 - Waste\n" +
                     "14 - Special"
         )
+
+        // Gets user input for category chosen.
         print("> ")
         val reader = Scanner(System.`in`)
         var integerIn: Int = reader.nextInt()
@@ -71,61 +85,61 @@ class ProductRequirements {
     }
 }
 
-class MachinesNeeded(item: String, quantity: Int) {
-    fun machineIn() { // how many items per minute to input.
-        return
-    }
+//class MachinesNeeded(item: String, quantity: Int) {
+//    fun machineIn() { // how many items per minute to input.
+//        return
+//    }
+//
+//    fun machineOut() { // how many items per minute to output.
+//        return
+//    }
+//
+//    fun getMachineName(machineInt: Int) { // machine name and value.
+//        return
+//    }
+//
+//    fun extractionMachines(num: Int): String? {
+//        val extractionMachinesList = mapOf(
+//            1 to "Miner Mk. 1",
+//            2 to "Miner Mk. 2",
+//            3 to "Miner Mk. 3",
+//            4 to "Oil Extractor",
+//            5 to "Water Extractor",
+//            6 to "Resource Well Pressurizer",
+//            7 to "Resource Well Extractor"
+//        )
+//        return extractionMachinesList[num]
+//    }
+//
+//    fun productionMachines(num: Int): String? {
+//        val productionMachinesList = mapOf(
+//            1 to "Smelter",
+//            2 to "Foundry",
+//            3 to "Constructor",
+//            4 to "Assembler",
+//            5 to "Manufacturer",
+//            6 to "Refinery",
+//            7 to "Packager",
+//            8 to "Blender",
+//            9 to "Particle Accelerator"
+//        )
+//        return productionMachinesList[num]
+//    }
+//
+//    fun generatorMachines(num: Int): String? {
+//        val generatorMachinesList = mapOf(
+//            1 to "Biomass Burner",
+//            2 to "Coal Generator",
+//            3 to "Fuel Generator",
+//            4 to "Geothermal Generator",
+//            5 to "Nuclear Power Plant",
+//            6 to "Power Storage"
+//        )
+//        return generatorMachinesList[num]
+//    }
+//}
 
-    fun machineOut() { // how many items per minute to output.
-        return
-    }
-
-    fun getMachineName(machineInt: Int) { // machine name and value.
-        return
-    }
-
-    fun extractionMachines(num: Int): String? {
-        val extractionMachinesList = mapOf(
-            1 to "Miner Mk. 1",
-            2 to "Miner Mk. 2",
-            3 to "Miner Mk. 3",
-            4 to "Oil Extractor",
-            5 to "Water Extractor",
-            6 to "Resource Well Pressurizer",
-            7 to "Resource Well Extractor"
-        )
-        return extractionMachinesList[num]
-    }
-
-    fun productionMachines(num: Int): String? {
-        val productionMachinesList = mapOf(
-            1 to "Smelter",
-            2 to "Foundry",
-            3 to "Constructor",
-            4 to "Assembler",
-            5 to "Manufacturer",
-            6 to "Refinery",
-            7 to "Packager",
-            8 to "Blender",
-            9 to "Particle Accelerator"
-        )
-        return productionMachinesList[num]
-    }
-
-    fun generatorMachines(num: Int): String? {
-        val generatorMachinesList = mapOf(
-            1 to "Biomass Burner",
-            2 to "Coal Generator",
-            3 to "Fuel Generator",
-            4 to "Geothermal Generator",
-            5 to "Nuclear Power Plant",
-            6 to "Power Storage"
-        )
-        return generatorMachinesList[num]
-    }
-}
-
-class ItemInfo {
+class ItemInfo { // This class holds all the information about each item.
     fun getInfo(itemCode: String) {
         val limestone = listOf(
             "Limestone",    // Name
@@ -260,7 +274,7 @@ class ItemInfo {
             null            // Item required to craft
         )
 
-        when (itemCode) {
+        when (itemCode) { // For displaying the information about an item chosen.
             "101" -> displayInfo(limestone)
             "102" -> displayInfo(ironOre)
             "103" -> displayInfo(copperOre)
@@ -275,7 +289,7 @@ class ItemInfo {
         }
     }
 
-    private fun displayInfo(list: List<Any?>) {
+    private fun displayInfo(list: List<Any?>) { // Loop function for displaying items.
         println(
             "\nItem Name:             ${list[0]}\n" +
                     "Stack Size:            ${list[1]}\n" +
@@ -283,7 +297,7 @@ class ItemInfo {
                     "Made in:               ${list[3]}\n" +
                     "Qty Produced:          ${list[4]}\n" +
                     "Alternate Recipes:     ${list[5]}\n"
-        )
+        ) // This section checks for null, so only fields with information are printed.
         for (i in 6..9) {
             if (list[i] != null) {
                 println("Item Used:             ${list[i]}\n")
@@ -292,31 +306,31 @@ class ItemInfo {
     }
 }
 
-class Recipes {
-    fun hasRecipe(itemCode: String): Boolean {
-        return if (itemCode[0] == '1') {
-            false
-        } else if (itemCode == "401" ||
-            itemCode == "402" ||
-            itemCode == "4010" ||
-            itemCode == "802" ||
-            itemCode == "806"
-        ) {
-            false
-        } else if (itemCode[0] == '1' &&
-            itemCode[1] == '0' &&
-            itemCode[3] < '5'
-        ) {
-            false
-        } else !(itemCode[0] == '1' &&
-                itemCode[2] == '4' &&
-                itemCode[3] < '4')
-    }
-}
+//class Recipes {
+//    fun hasRecipe(itemCode: String): Boolean {
+//        return if (itemCode[0] == '1') {
+//            false
+//        } else if (itemCode == "401" ||
+//            itemCode == "402" ||
+//            itemCode == "4010" ||
+//            itemCode == "802" ||
+//            itemCode == "806"
+//        ) {
+//            false
+//        } else if (itemCode[0] == '1' &&
+//            itemCode[1] == '0' &&
+//            itemCode[3] < '5'
+//        ) {
+//            false
+//        } else !(itemCode[0] == '1' &&
+//                itemCode[2] == '4' &&
+//                itemCode[3] < '4')
+//    }
+//}
 
-class AltRecipes
+//class AltRecipes
 
-class Items {
+class Items { // Contains a map of item maps.
     private val oresList = mapOf(
         1 to "Limestone",       // 101
         2 to "Iron Ore",        // 102
@@ -463,6 +477,7 @@ class Items {
         14 to "Nuclear Pasta"
     )
 
+    // Behold, the map of maps.
     val categories = mapOf(
         1 to oresList,
         2 to ingotsList,
@@ -481,7 +496,7 @@ class Items {
     )
 }
 
-fun main() {
+fun main() { // Main, runs the rest of the program.
     val run = ProductRequirements()
     run.chooseProduct()
 }
